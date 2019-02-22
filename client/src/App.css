@@ -1,5 +1,9 @@
 .remove-btn {
-  margin-right: 0.5rem;
+  margin-right: .75rem;
+}
+
+.update-btn {
+  margin-right: 1.0rem;
 }
 
 .fade-enter {

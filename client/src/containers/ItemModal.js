@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input
-} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
@@ -48,12 +39,12 @@ class ItemModal extends Component {
   render() {
     return(
       <div>
-        <Button
-          color="dark"
-          style={{marginBottom: "2rem"}}
-          onClick={this.toggle}
-        >Add Item
-        </Button>
+          <Button
+            color="success"
+            style={{marginBottom: "2rem"}}
+            onClick={this.toggle}
+          >Add Item
+          </Button>{' '}
 
         <Modal
           isOpen={this.state.modal}

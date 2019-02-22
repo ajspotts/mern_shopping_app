@@ -36,6 +36,16 @@ router.post('/', (req, res) => {
     .then(item => res.json(item));
 });
 
+// @route PUT api/items
+// @desc  Update An item
+// @access Public
+
+router.put('/:id', (req, res) => {
+  Item.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(item => res.json(item))
+    .catch(err => res.status(404).json({success: false}));
+})
+
 // @route DELETE api/items/:id
 // @desc  Delete An item
 // @access Public

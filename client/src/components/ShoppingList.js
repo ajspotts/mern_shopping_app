@@ -3,7 +3,7 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 //import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { getItems, deleteItem } from '../actions/itemActions';
+import { getItems, deleteItem, editItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 class ShoppingList extends Component {
@@ -13,6 +13,8 @@ class ShoppingList extends Component {
   }
 
   onDeleteClick = id => this.props.deleteItem(id)
+
+  onEditClick = id => this.props.editItem(id)
 
   render() {
     const { items } = this.props.item;
@@ -33,16 +35,24 @@ class ShoppingList extends Component {
         </Button>*/}
         <ListGroup>
           <TransitionGroup className="shopping-list">
-          {items.map(({_id, name})=> (
+          {items.map(({_id, name}) => (
             <CSSTransition key={_id} timeout={500} classNames="fade">
               <ListGroupItem>
-              <Button
-              className="remove-btn"
-              color="danger"
-              size="sm"
-              onClick={this.onDeleteClick.bind(this, _id)}
-              >&times;
-              </Button>
+                <Button
+                  className="remove-btn"
+                  color="danger"
+                  size="sm"
+                  onClick={this.onDeleteClick.bind(this, _id)}
+                >Remove
+                </Button>
+                <Button
+                className="update-btn"
+                  color="info"
+                  size="sm"
+                  onClick={this.onEditClick.bind(this, _id)}
+                >Update
+                </Button>
+                {' '}
                 {name}
               </ListGroupItem>
             </CSSTransition>
@@ -57,6 +67,7 @@ class ShoppingList extends Component {
 ShoppingList.propTypes = {
   getItems: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired
 }
 
@@ -65,5 +76,5 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps,
-  { getItems, deleteItem }
+  { getItems, deleteItem, editItem }
 )(ShoppingList);
