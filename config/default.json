@@ -1,0 +1,5 @@
+{
+  "mongoURI": "mongodb+srv://ajspotts:Maryland%2301@cluster0-9dhug.mongodb.net/test?retryWrites=true",
+  "jwtSecret": "msl_jwtSecret"
+}
+
