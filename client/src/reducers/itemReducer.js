@@ -7,7 +7,7 @@ const initialState = {
   loading: false
 };
 
-export default function(state = initialState, {type, payload}) { //deconstruct action object
+export default function(state = initialState, { type, payload }) { //deconstruct action object
   switch(type) {
       case GET_ITEMS:
       return {
