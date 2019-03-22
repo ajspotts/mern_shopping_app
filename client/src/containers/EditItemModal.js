@@ -10,6 +10,11 @@ class EditItemModal extends Component{
         _id: '',
         name: ''
     }
+    
+    static propTypes = {
+        updateItem: PropTypes.func.isRequired,
+        item: PropTypes.object.isRequired
+    }
 
     toggle = () => {
         this.setState({
@@ -35,13 +40,13 @@ class EditItemModal extends Component{
         this.toggle();
     }
 
-    //When reducer is changed, it going to be called
+    //When reducer is changed, it is going to be called
     componentWillReceiveProps(nextProps){
-        console.log('EditItemModel: componentWillReceiveProps: Old Props State: ', this.props, this.props.itemObj.item);
+        console.log('EditItemModel: componentWillReceiveProps: Old Props State: ', this.props, this.props.item.item);
         console.log('EditItemModel: componentWillReceiveProps: nextProps: ', nextProps);
         console.log(arguments);
 
-        const editItem = nextProps.itemObj.item;
+        const editItem = nextProps.item.item;
         console.log(JSON.stringify(editItem));
         if(editItem){
             this.toggle();
@@ -56,10 +61,10 @@ class EditItemModal extends Component{
                     <ModalHeader toggle={this.toggle}>Edit of Shopping List</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
-                            <FormGroup>
+                            {/* <FormGroup>
                                 <Label for="item">Item ID</Label>
                                 <Input type="text" name="_id" id="item" placeholder="Item ID" readOnly defaultValue={this.state._id} />
-                            </FormGroup>
+                            </FormGroup> */}
                             <FormGroup>
                                 <Label for="item">Item Description</Label>
                                 <Input type="text" name="name" id="item" placeholder="Edit shopping item"
@@ -76,11 +81,10 @@ class EditItemModal extends Component{
     }
 }
 
-EditItemModal.propTypes = {
-    updateItem: PropTypes.func.isRequired,
-    itemObj: PropTypes.object.isRequired
-}
 const mapStateToProps = (state) => ({
-    itemObj: state.item
+    item: state.item
 });
-export default connect(mapStateToProps, { updateItem })(EditItemModal);
+export default connect(
+    mapStateToProps, 
+    { updateItem }
+    )(EditItemModal);
